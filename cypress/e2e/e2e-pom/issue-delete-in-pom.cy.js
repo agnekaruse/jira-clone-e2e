@@ -14,12 +14,24 @@ describe('Issue delete', () => {
 
   //issue title, that we are testing with, saved into variable
   const issueTitle = 'This is an issue of type: Task.';
+ 
 
-  it('Should delete issue successfully', () => {
-    //add steps to delete issue
+  it("Should delete issue successfully", () => {
+
+    // Click on the Delete button and confrim deletion
+    IssueModal.clickDeleteButton();
+    IssueModal.confirmDeletion();
+
+    // Check that issue is no longer visible on board
+    IssueModal.ensureIssueIsNotVisibleOnBoard(issueTitle);
   });
 
   it('Should cancel deletion process successfully', () => {
-    //add steps to start deletion proces but cancel it
+    IssueModal.validateAmountOfIssuesInBacklog = 3;
+
+    //Click on Delete button and then Cancel deletion
+    IssueModal.clickDeleteButton();
+    IssueModal.cancelDeletion();
   });
 });
+
